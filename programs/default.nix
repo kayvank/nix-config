@@ -6,6 +6,8 @@
   ./git
   ./rofi
   ./tmux
+  ./tmux
+  ./neovim
   ./xmonad
   ./zsh
 ]

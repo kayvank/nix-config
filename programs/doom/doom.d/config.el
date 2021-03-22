@@ -114,8 +114,7 @@
 
 (use-package! erc
   :custom
-  (erc-autojoin-channels-alist '(("freenode.net" "#archlinux" "#bash" "#bitcoin"
-                                  "#emacs" "#haskell" "purescript")))
+  (erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#haskell" "purescript" "nixos")))
   (erc-autojoin-timing 'ident)
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 22)

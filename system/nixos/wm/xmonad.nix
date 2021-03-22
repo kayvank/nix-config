@@ -35,7 +35,10 @@
       displayManager = {
         defaultSession = "none+xmonad";
       };
-
+  displayManager.sessionCommands = ''
+    /bin/xrandr --setprovideroutputsource 2 0
+  '';
+ 
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;

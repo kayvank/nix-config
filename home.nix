@@ -7,10 +7,11 @@ let
     asciinema            # record the terminal
     audacious            # simple music player
     bitwarden-cli        # command-line client for the password manager
+    bloop                # Scala build server
     bottom               # alternative to htop & ytop
     brave                # Browser
     cachix               # nix caching
-    calibre              # e-book reader
+    cinnamon.nemo        # filemanager
     chromium             # Browser
     dconf2nix            # dconf (gnome) files to nix converter
     dmenu                # application launcher
@@ -21,15 +22,19 @@ let
     fd                   # "find" for files
     gimp                 # gnu image manipulation program
     gnomecast            # chromecast local files
+    haskellPackages.implicit-hie # hie
     hyperfine            # command-line benchmarking tool
     insomnia             # rest client with graphql support
     jitsi-meet-electron  # open source video calls and chat
     k9s                  # k8s pods manager
     killall              # kill processes by name
+    konsole
     libreoffice          # office suite
     libnotify            # notify-send command
  ###   multilockscreen      # fast lockscreen based on i3lock
     manix                # documentation searcher for nix
+    mate.atril           # pdf reader
+    metals               # scala build for emacs
     ncdu                 # disk space info (a better du)
     neofetch             # command-line system information
     ngrok-2              # secure tunneling to localhost
@@ -42,26 +47,30 @@ let
     paprefs              # pulseaudio preferences
     pasystray            # pulseaudio systray
     playerctl            # music player controller
-    polybar              # for xmonad
+    # polybar              # for xmonad
     prettyping           # a nicer ping
     pulsemixer           # pulseaudio mixer
     ranger               # command line file browser
     ripgrep              # fast grep
     rnix-lsp             # nix lsp server
+    sbt
     signal-desktop       # signal messaging client
     simplescreenrecorder # self-explanatory
     slack                # messaging client
     spotify              # music source
     stalonetray
+    stylish-cabal
     tdesktop             # telegram messaging client
     terminator           # great terminal multiplexer
     tldr                 # summary of a man page
     tree                 # display files in a tree view
     tmux
     vlc                  # media player
-    xclip                # clipboard support (also for neovim)
+    watchman
+    xclip                # clipboard support (also for vim)
     xmobar               # for xmonad
     xscreensaver         # lock screen
+    xsel
     yad                  # yet another dialog - fork of zenity
     zsh                  # zshell, bash ++
     # fixes the `ar` error required by cabal
@@ -89,6 +98,8 @@ let
     ghc                     # compiler
     haskell-language-server # haskell IDE (ships with ghcide)
     hoogle                  # documentation
+    implicit-hie
+    stylish-haskell
     nix-tree                # visualize nix dependencies
   ];
 
@@ -137,7 +148,7 @@ in
 
     sessionVariables = {
       DISPLAY = ":0";
-      EDITOR = "nvim";
+      EDITOR = "vim";
     };
   };
 
@@ -185,6 +196,7 @@ in
     jq.enable = true;
     ssh.enable = true;
   };
+
 
   services = {
     flameshot.enable = true;
