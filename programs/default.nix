@@ -1,0 +1,11 @@
+[
+  ./browsers/firefox.nix
+  ./dconf
+  ./doom
+  ./git
+  ./fish
+  ./neovim
+  ./rofi
+  ./tmux
+  ./xmonad
+]
