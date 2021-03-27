@@ -2,12 +2,14 @@
 
 let
   defaultPkgs = with pkgs; [
+    alacritty
     any-nix-shell        # fish support for nix shell
     arandr               # simple GUI for xrandr
     asciinema            # record the terminal
     audacious            # simple music player
     bitwarden-cli        # command-line client for the password manager
     bloop                # Scala build server
+    blueman              # bluetooth manager
     bottom               # alternative to htop & ytop
     brave                # Browser
     cachix               # nix caching
@@ -33,7 +35,7 @@ let
     konsole
     libreoffice          # office suite
     libnotify            # notify-send command
- ###   multilockscreen      # fast lockscreen based on i3lock
+    multilockscreen      # fast lockscreen based on i3lock
     manix                # documentation searcher for nix
     mate.atril           # pdf reader
     metals               # scala build for emacs
@@ -42,9 +44,11 @@ let
     ngrok-2              # secure tunneling to localhost
     nix-doc              # nix documentation search tool
     nix-index            # files database for nixpkgs
+    nixos-icons
     nodejs
     nodePackages.node2nix
     nyancat              # the famous rainbow cat!
+    pulseaudio           #
     pa_applet            # pulse audio applet
     pavucontrol          # pulseaudio volume control
     paprefs              # pulseaudio preferences
@@ -73,6 +77,7 @@ let
     vim
     watchman
     xclip                # clipboard support (also for vim)
+    xfce.xfce4-pulseaudio-plugin
     xmobar               # for xmonad
     xscreensaver         # lock screen
     xsel

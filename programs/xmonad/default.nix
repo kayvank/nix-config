@@ -6,6 +6,7 @@ let
     ${pkgs.xorg.xset}/bin/xset s off
     ${pkgs.xcape}/bin/xcape -e "Hyper_L=Tab;Hyper_R=backslash"
     ${pkgs.xorg.xrandr}/bin/xrandr --auto
+    ${pkgs.xorg.xrandr}/bin/xrandr  --setprovideroutputsource 1 0
     ${pkgs.xorg.xrandr}/bin/xrandr -- dpi 145
   '';
 
