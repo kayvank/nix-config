@@ -207,7 +207,6 @@ in
 
   };
 
-
   services = {
     flameshot.enable = true;
     # xscreensaver = {enable = true; settings = { lock = true; };};
