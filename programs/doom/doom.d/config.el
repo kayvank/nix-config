@@ -87,7 +87,7 @@
 (global-set-key (kbd "C-c n") 'avy-goto-char)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "C-x w") 'elfeed)
-(global-set-key (kbd "<f8>") 'neotree-projectile-action)
+(global-set-key (kbd "<f8>") 'treemacs)
 (global-set-key (kbd "S-<f8>") 'neotree-toggle)
 (global-set-key [f6] 'lsp-describe-thing-at-point)
 ;; (global-set-key (kbd "C-c C-g") 'helm-projectile-grep)
@@ -97,7 +97,8 @@
 (global-set-key (kbd "C-c C-m l") 'lsp-command-map)
 (global-set-key (kbd "C-c C-a") 'lsp-ui-sideline-apply-code-actions)
 (global-set-key (kbd "C-c C-m g") 'haskell-hoogle)
-(global-set-key (kbd "C-c C-h") 'haskell-hoogle-lookup-from-website)
+(global-set-key (kbd "C-c C-w") 'haskell-hoogle-lookup-from-website)
+(global-set-key (kbd "C-c C-h") 'haskell-hoogle-lookup-from-local)
 ;;
 ;; relie on build tool to reformat source code & refresh
 (global-auto-revert-mode t)
@@ -109,6 +110,14 @@
 (setq rmh-elfeed-org-files (list "~/.elfeed.org"))
 (setq lsp-lens-enable t)
 (evil-define-key 'normal lsp-mode-map (kbd "\\") lsp-command-map)
+
+(use-package! lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package! lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package! ormolu
+  :hook (haskell-mode . ormolu-format-on-save-mode)
+  :bind
+  (:map haskell-mode-map
+   ("C-c r" . ormolu-format-buffer)))
 
 ;;;;;;;;;; gnus ;;;;;;;;;;;
 

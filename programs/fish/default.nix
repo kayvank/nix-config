@@ -12,6 +12,9 @@ let
     set -g theme_nerd_fonts yes
     set -g theme_newline_cursor yes
     set -g theme_color_scheme solarized
+    # set -g direnv_fish_mode eval_on_arrow
+    # set -g direnv_fish_mode eval_after_arrow
+    # set -g direnv_fish_mode disable_arrow
   '';
 
   gpgConfig = ''
@@ -25,11 +28,15 @@ let
     src = pkgs.fishPlugins.foreign-env.src;
   };
 
+  nixConfig = ''
+    fenv source  /home/soostone/.nix-profile/etc/profile.d/nix.sh
+  '';
+
   fishConfig = ''
     bind \t accept-autosuggestion
     set fish_greeting
     fish_vi_key_bindings
-  '' + fzfConfig + themeConfig + gpgConfig;
+  '' + fzfConfig + themeConfig + gpgConfig + nixConfig;
 in
 {
   programs.fish = {
@@ -41,7 +48,7 @@ in
       neofetch
     '';
     shellAliases = {
-      cat       = "bat";
+      # cat       = "bat";
       d         = "dirh";
       dc        = "docker-compose";
       dcd       = "docker-compose down --remove-orphans";
@@ -58,8 +65,9 @@ in
       pbpaste   = "xsel --clipboard";
       ping      = "prettyping";
       whaskell  = "cd ~/dev/workspaces/workspace-haskell";
-      wproto    = "cd ~/dev/workspaces/workspace-proto";
       wnixos    = "cd ~/dev/workspaces/workspace-nixos";
+      wproto    = "cd ~/dev/workspaces/workspace-proto";
+      wsoostone = "cd ~/dev/workspaces/workspace-soostone";
       tmx       = "tmux new-session -s $USER-`date +%s`";
       tma       = "tmux attach";
     };

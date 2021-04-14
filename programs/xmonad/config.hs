@@ -13,12 +13,12 @@ import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import XMonad
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
-import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig (additionalKeys, additionalKeysP)
 import XMonad.Util.SpawnOnce
@@ -26,7 +26,7 @@ import XMonad.Util.SpawnOnce
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "konsole"
+myTerminal = "terminator"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -180,25 +180,29 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (
-    ThreeColMid 1 (3/100) (1/2) |||
-    Tall 1 (3/100) (1/2) |||
-    Mirror (Tall 1 (3/100) (1/2)) |||
-    tabbed shrinkText tabConfig |||
-    Full |||
-    spiral (6/7)) |||
-    noBorders (fullscreenFull Full)
--- Colors for text and backgrounds of each tab when in "Tabbed" layout.
-tabConfig = defaultTheme {
-    activeBorderColor = "#7C7C7C",
-    activeTextColor = "#CEFFAC",
-    activeColor = "#000000",
-    inactiveBorderColor = "#7C7C7C",
-    inactiveTextColor = "#EEEEEE",
-    inactiveColor = "#000000"
-}
-myLayout' = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout =
+  avoidStruts
+    ( ThreeColMid 1 (3 / 100) (1 / 2)
+        ||| Tall 1 (3 / 100) (1 / 2)
+        ||| Mirror (Tall 1 (3 / 100) (1 / 2))
+        ||| tabbed shrinkText tabConfig
+        ||| Full
+        ||| spiral (6 / 7)
+    )
+    ||| noBorders (fullscreenFull Full)
 
+-- Colors for text and backgrounds of each tab when in "Tabbed" layout.
+tabConfig =
+  defaultTheme
+    { activeBorderColor = "#7C7C7C",
+      activeTextColor = "#CEFFAC",
+      activeColor = "#000000",
+      inactiveBorderColor = "#7C7C7C",
+      inactiveTextColor = "#EEEEEE",
+      inactiveColor = "#000000"
+    }
+
+myLayout' = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio
@@ -266,8 +270,8 @@ myLogHook = return ()
 -- By default, do nothing.
 
 myStartupHook = do
-  spawnOnce "xscreensaver"
-  spawnOnce "feh --bg-fill /home/soostone/.config/nixpkgs/haskell.png"
+  -- spawnOnce "xscreensaver"
+  spawnOnce "feh --bg-fill /home/soostone/.config/nixpkgs/nixos.png"
   spawnOnce "xmobar"
   spawnOnce "blueman-applet"
   spawnOnce "nm-applet"

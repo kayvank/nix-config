@@ -3,6 +3,6 @@
   ./gpg-agent
   ./networkmanager
   ./picom
-  ./screenlocker
+#  ./screenlocker
   ./udiskie
 ]

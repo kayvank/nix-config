@@ -35,7 +35,8 @@ let
     konsole
     libreoffice          # office suite
     libnotify            # notify-send command
-    multilockscreen      # fast lockscreen based on i3lock
+
+    ##multilockscreen      # fast lockscreen based on i3lock
     manix                # documentation searcher for nix
     mate.atril           # pdf reader
     metals               # scala build for emacs
@@ -45,10 +46,11 @@ let
     nix-doc              # nix documentation search tool
     nix-index            # files database for nixpkgs
     nixos-icons
-    nodejs
-    nodePackages.node2nix
+    nodejs               # npm and node
+    nodePackages.node2nix # node to nix
     nyancat              # the famous rainbow cat!
-    pulseaudio           #
+    ormolu               # haskell formatter
+    pulseaudio           # autio control
     pa_applet            # pulse audio applet
     pavucontrol          # pulseaudio volume control
     paprefs              # pulseaudio preferences
@@ -79,7 +81,7 @@ let
     xclip                # clipboard support (also for vim)
     xfce.xfce4-pulseaudio-plugin
     xmobar               # for xmonad
-    xscreensaver         # lock screen
+    # xscreensaver         # lock screen
     xsel
     yad                  # yet another dialog - fork of zenity
     yarn
@@ -109,9 +111,9 @@ let
     ghc                     # compiler
     haskell-language-server # haskell IDE (ships with ghcide)
     hoogle                  # documentation
-    implicit-hie
-    stylish-haskell
     nix-tree                # visualize nix dependencies
+    ormolu
+    stylish-haskell
   ];
 
   polybarPkgs = with pkgs; [
@@ -172,17 +174,20 @@ in
     broot = {
       enable = true;
       enableFishIntegration = true;
+      enableZshIntegration = true;
     };
 
     direnv = {
       enable = true;
       enableFishIntegration = true;
+      enableZshIntegration = true;
       enableNixDirenvIntegration = true;
     };
 
     fzf = {
       enable = true;
       enableFishIntegration = true;
+      enableZshIntegration = true;
     };
 
     gpg.enable = true;
@@ -193,6 +198,10 @@ in
       sortKey = "PERCENT_CPU";
     };
 
+    zsh = {
+      enable = true;
+    };
+
     jq.enable = true;
     ssh.enable = true;
 
@@ -201,6 +210,7 @@ in
 
   services = {
     flameshot.enable = true;
+    # xscreensaver = {enable = true; settings = { lock = true; };};
   };
 
 }

@@ -1,9 +1,9 @@
 [
-  ./browsers/firefox.nix
   ./dconf
   ./doom
   ./git
   ./fish
+  ./zsh
   ./neovim
   ./rofi
   ./tmux
