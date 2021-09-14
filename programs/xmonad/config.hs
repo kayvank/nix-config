@@ -16,6 +16,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
@@ -27,6 +28,8 @@ import XMonad.Util.SpawnOnce
 -- certain contrib modules.
 --
 myTerminal = "terminator"
+
+-- myTerminal = "konsole"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -57,9 +60,8 @@ myModMask = mod4Mask
 -- myWorkspaces = ["dev", "cli", "web", "irc"] ++ map show [5 .. 9]
 
 --
--- myWorkspaces = ["1:emacs", "2:term", "3:docs", "4:web", "5:chat"] ++ map show [6 .. 9]
-
-myWorkspaces = ["1:emacs", "2:term", "3:web", "docs", "5", "6", "7", "8", "9"]
+--myWorkspaces = ["1:emacs", "2:term", "3:web", "docs", "5", "6", "7", "8:chat", "9"]
+myWorkspaces = ["1:napkin", "2:client-analytics", "3:web", "docs", "5", "6", "7", "8:chat", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -269,13 +271,17 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 
+-- Command to launch the bar.
+myBar = "xmobar"
+
 myStartupHook = do
   -- spawnOnce "xscreensaver"
-  spawnOnce "feh --bg-fill /home/soostone/.config/nixpkgs/nixos.png"
-  spawnOnce "xmobar"
+  spawnOnce "feh --bg-fill /home/soostone/Pictures/haskell.png"
+  spawnOnce myBar
   spawnOnce "blueman-applet"
   spawnOnce "nm-applet"
   spawnOnce "pa-applet"
+  spawnOnce "flameshot"
   spawnOnce "stalonetray"
 
 ------------------------------------------------------------------------
@@ -283,9 +289,6 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-
--- Command to launch the bar.
-myBar = "xmobar"
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
 -- myPP = xmobarPP {ppCurrent = xmobarColor "#429942" "" . wrap "<" ">"}

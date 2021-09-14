@@ -12,10 +12,15 @@ let
     set -g theme_nerd_fonts yes
     set -g theme_newline_cursor yes
     set -g theme_color_scheme solarized
-    # set -g direnv_fish_mode eval_on_arrow
-    # set -g direnv_fish_mode eval_after_arrow
-    # set -g direnv_fish_mode disable_arrow
+    set -g direnv_fish_mode eval_on_arrow
+    set -g direnv_fish_mode eval_after_arrow
+    set -g direnv_fish_mode disable_arrow
   '';
+
+  zlibConfig = ''
+  set -g CPATH  /home/soostone/.nix-profile/include
+  set -g LIBRARY_PATH /home/soostone/.nix-profile/lib
+'';
 
   gpgConfig = ''
     set -gx GPG_TTY (tty)
@@ -36,7 +41,7 @@ let
     bind \t accept-autosuggestion
     set fish_greeting
     fish_vi_key_bindings
-  '' + fzfConfig + themeConfig + gpgConfig + nixConfig;
+  '' + fzfConfig + themeConfig + gpgConfig + nixConfig + zlibConfig;
 in
 {
   programs.fish = {

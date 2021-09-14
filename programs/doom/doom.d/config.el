@@ -104,6 +104,12 @@
 (global-auto-revert-mode t)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
+(use-package! highlight-symbol)
+(global-set-key [(control f3)] 'highlight-symbol)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(double-mouse-1)] 'highlight-symbol-at-point)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
 (setq large-file-warning-threshold 100000000)
 ;; (setq auth-sources '("~/.authinfo.gpg") auth-source-cache-expiry nil)

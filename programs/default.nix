@@ -1,6 +1,6 @@
 [
   ./dconf
-  ./doom
+  # ./doom
   ./git
   ./fish
   ./zsh
