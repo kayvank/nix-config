@@ -21,7 +21,7 @@ import XMonad.Util.SpawnOnce
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "terminator"
+myTerminal = "konsole" --"terminator"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -54,7 +54,7 @@ myModMask = mod4Mask
 --
 -- myWorkspaces = ["1:emacs", "2:term", "3:docs", "4:web", "5:chat"] ++ map show [6 .. 9]
 
-myWorkspaces = ["1:emacs", "2:term", "3:web", "docs", "5", "6", "7", "8", "9"]
+myWorkspaces = ["1:emacs", "2:term", "3:web", "docs", "5", "6", "7", "8:comm", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -243,13 +243,14 @@ myLogHook = return ()
 -- By default, do nothing.
 
 myStartupHook = do
-  spawnOnce "stalonetray"
-  spawnOnce "feh --bg-fill /home/kayvan/.config/nixpkgs/haskell.png"
-  spawnOnce "blueman-applet"
-  spawnOnce "nm-applet"
-  spawnOnce "pa-applet"
-  spawnOnce "xscreensaver"
-  spawnOnce "xmobar"
+  -- spawnOnce "stalonetray"
+  -- spawnOnce "feh --bg-fill /home/kayvan/.shared/wallpaper/xm-1.jpg"
+  spawnOnce "blueman-applet &"
+  spawnOnce "nm-applet &"
+  spawnOnce "pa-applet &"
+  spawnOnce "xscreensaver &"
+  spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 8 --height 18 --transparent true --alpha 0 --tint 0x292d3e &"
+  spawnOnce "xmobar &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

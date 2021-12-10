@@ -5,7 +5,8 @@ let
     ${pkgs.util-linux}/bin/setterm -blank 0 -powersave off -powerdown 0
     ${pkgs.xorg.xset}/bin/xset s off
     ${pkgs.xcape}/bin/xcape -e "Hyper_L=Tab;Hyper_R=backslash"
-    ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-A-0 --mode 3840x2160 --rate 30.00
+    # ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-A-0 --mode 3840x2160 --rate 30.00
+    # ${pkgs.xorg.xrandr}/bin/xrandr  --setprovideroutputsource 1 0
   '';
 
   polybarOpts = ''
@@ -26,7 +27,6 @@ in
     "Xcursor*theme" = "Vanilla-DMZ-AA";
     "Xcursor*size" = 20;
   };
-
   xsession = {
     enable = true;
 
@@ -39,7 +39,7 @@ in
         hp.dbus
         hp.monad-logger
       ];
-      config = ./config.hs;
+      config = ./xmonad.hs;
     };
   };
 }

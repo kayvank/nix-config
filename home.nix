@@ -7,29 +7,38 @@ let
     asciinema            # record the terminal
     audacious            # simple music player
     bitwarden-cli        # command-line client for the password manager
+    bloop                # Scala build server
     bottom               # alternative to htop & ytop
     brave                # Browser
     cachix               # nix caching
-    calibre              # e-book reader
+    cinnamon.nemo        # filemanager
     chromium             # Browser
-    dconf2nix            # dconf (gnome) files to nix converter
     dmenu                # application launcher
     docker-compose       # docker manager
     dive                 # explore docker layers
-    element-desktop      # a feature-rich client for Matrix.org
+    # element-desktop      # a feature-rich client for Matrix.org
     exa                  # a better `ls`
     fd                   # "find" for files
+    ghc
+    gnumake
+    gnome.dconf
     gimp                 # gnu image manipulation program
+    git
     gnomecast            # chromecast local files
+    htop
     hyperfine            # command-line benchmarking tool
     insomnia             # rest client with graphql support
-    jitsi-meet-electron  # open source video calls and chat
+    jitsi-meet-electron  # open source video calls and chats
     k9s                  # k8s pods manager
     killall              # kill processes by name
+    konsole              # KDE terminal
     libreoffice          # office suite
     libnotify            # notify-send command
+    lorri
  ###   multilockscreen      # fast lockscreen based on i3lock
     manix                # documentation searcher for nix
+    mate.atril           # pdf reader
+    metals               # scala build for emacs
     ncdu                 # disk space info (a better du)
     neofetch             # command-line system information
     ngrok-2              # secure tunneling to localhost
@@ -43,27 +52,37 @@ let
     pasystray            # pulseaudio systray
     playerctl            # music player controller
     polybar              # for xmonad
+    postgresql
     prettyping           # a nicer ping
     pulsemixer           # pulseaudio mixer
     ranger               # command line file browser
     ripgrep              # fast grep
     rnix-lsp             # nix lsp server
+    sbt
     signal-desktop       # signal messaging client
     simplescreenrecorder # self-explanatory
     slack                # messaging client
+    sqlite
     spotify              # music source
     stalonetray
+    trayer
     tdesktop             # telegram messaging client
     terminator           # great terminal multiplexer
     tldr                 # summary of a man page
     tree                 # display files in a tree view
     tmux
+    unzip
+    vim
     vlc                  # media player
-    xclip                # clipboard support (also for neovim)
+    vscode               # visual studio
+    watchman
+    xclip                # clipboard support (also for vim)
     xmobar               # for xmonad
     xscreensaver         # lock screen
+    xsel
     yad                  # yet another dialog - fork of zenity
     zsh                  # zshell, bash ++
+    zlib
     # fixes the `ar` error required by cabal
     binutils-unwrapped
   ];
@@ -82,15 +101,25 @@ let
     nautilus       # file manager
   ];
 
-  haskellPkgs = with pkgs.haskellPackages; [
-    brittany                # code formatter
-    cabal2nix               # convert cabal projects to nix
-    cabal-install           # package manager
-    ghc                     # compiler
-    haskell-language-server # haskell IDE (ships with ghcide)
-    hoogle                  # documentation
-    nix-tree                # visualize nix dependencies
-  ];
+ haskellPkgs = with pkgs.haskellPackages; [
+    cabal2nix # convert cabal projects to nix
+    cabal-install # package manager
+    # structured-haskell-mode
+    ghc
+    # ghcid # compiler
+    # haskell-language-server # haskell IDE (ships with ghcide)
+    # dhall-lsp-server
+    hoogle # documentation
+    # hlint
+    # hpack
+    # implicit-hie # hie
+    # hie-bios
+    # niv
+    nix-tree # visualize nix dependencies
+    # ormolu
+    # stylish-haskell
+ ];
+ rustPkgs = with pkgs; [ rustup ];
 
   polybarPkgs = with pkgs; [
     font-awesome-ttf      # awesome fonts
@@ -111,17 +140,29 @@ let
 
 in
 {
+
+programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [
+      epkgs.nix-mode
+      epkgs.magit
+    ];
+  };
+
+
   programs.home-manager.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
+    allowBroken = true;
     packageOverrides = p: {
       nur = import (import pinned/nur.nix) { inherit pkgs; };
     };
   };
 
   nixpkgs.overlays = [
-    (import ./overlays/beauty-line)
+    (import ./overlays/beauty-line) 
+
   ];
 
   imports = (import ./programs) ++ (import ./services) ++ [(import ./themes)];
@@ -131,13 +172,13 @@ in
   home = {
     username      = "kayvan";
     homeDirectory = "/home/kayvan";
-    stateVersion  = "21.03";
+    stateVersion  = "22.05";
 
     packages = defaultPkgs ++ gitPkgs ++ gnomePkgs ++ haskellPkgs ++ polybarPkgs ++ scripts ++ xmonadPkgs;
 
     sessionVariables = {
       DISPLAY = ":0";
-      EDITOR = "nvim";
+      EDITOR = "vim";
     };
   };
 
@@ -157,7 +198,7 @@ in
       enable = true;
       enableFishIntegration = true;
       enableZshIntegration = true;
-      enableNixDirenvIntegration = true;
+      nix-direnv.enable = true;
     };
 
     fzf = {
@@ -168,11 +209,7 @@ in
 
     gpg.enable = true;
 
-    htop = {
-      enable = true;
-      sortDescending = true;
-      sortKey = "PERCENT_CPU";
-    };
+    # htop = {enable = true; sortDescending = true; sortKey = "PERCENT_CPU";};
 
     zsh = {
       enable = true;
@@ -185,6 +222,7 @@ in
     jq.enable = true;
     ssh.enable = true;
   };
+
 
   services = {
     flameshot.enable = true;

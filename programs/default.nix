@@ -1,11 +1,12 @@
 [
   ./browsers/firefox.nix
   ./dconf
-  ./doom
-  ./fish
+##  ./doom
+#  ./fish
   ./git
   ./rofi
   ./tmux
+  # ./neovim
   ./xmonad
   ./zsh
 ]

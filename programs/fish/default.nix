@@ -41,26 +41,29 @@ in
       neofetch
     '';
     shellAliases = {
-      pbcopy  = "xclip -in -selection clipboard";
-      pbpaste = "xsel --clipboard";
-      emc     = "nohup emacsclient -c &> /dev/null &";
-      emd     = "emacs --daemon";
-      tmx     = "tmux new-session -s $USER-`date +%s`";
-      tma     = "tmux attach";
-      d       = "dirh";
-      cat     = "bat";
-      dc      = "docker-compose";
-      dps     = "docker-compose ps";
-      dcd     = "docker-compose down --remove-orphans";
-      du      = "ncdu --color dark -rr -x";
-      ls      = "exa";
-      ll      = "ls -l";
-      lla     = "ls -la";
-      mfix    = "mill mono.__.fix --rules OrganizeImports && mill mono._.reformat";
-      ".."    = "cd ..";
-      ping    = "prettyping";
+      cat       = "bat";
+      d         = "dirh";
+      dc        = "docker-compose";
+      dcd       = "docker-compose down --remove-orphans";
+      dps       = "docker-compose ps";
+      du        = "ncdu --color dark -rr -x";
+      emc       = "nohup emacsclient -c &> /dev/null &";
+      emd       = "emacs --daemon";
+      mfix      = "mill mono.__.fix --rules OrganizeImports && mill mono._.reformat";
+      ls        = "exa";
+      ll        = "ls -l";
+      lla       = "ls -la";
+      ".."      = "cd ..";
+      pbcopy    = "xclip -in -selection clipboard";
+      pbpaste   = "xsel --clipboard";
+      ping      = "prettyping";
+      whaskell  = "cd ~/dev/workspaces/workspace-haskell";
+      wproto    = "cd ~/dev/workspaces/workspace-proto";
+      wnixos    = "cd ~/dev/workspaces/workspace-nixos";
+      tmx       = "tmux new-session -s $USER-`date +%s`";
+      tma       = "tmux attach";
     };
-    shellInit = fishConfig;
+    shellInit   = fishConfig;
   };
 
   xdg.configFile."fish/functions/fish_prompt.fish".text = customPlugins.prompt;

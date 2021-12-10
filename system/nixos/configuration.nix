@@ -53,9 +53,18 @@ in
   };
  
 
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_latest; 
+	swapDevices = [ 
+	  { 
+		  device = "/var/swap";
+      size = 1024 * 8 * 2 ; # twice the RAM should leave enough space for hibernation
+    }
+  ];
 
   networking.hostName = "xeon-saturn"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -81,7 +90,8 @@ in
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.videoDrivers = [ "modesetting" ];
+  # services.xserver.videoDrivers = [ "modesetting" "displaylink" "nvidia"];
+  services.xserver.videoDrivers = [ "modesetting"];
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -101,7 +111,8 @@ in
   hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+   services.xserver.libinput.enable = true; 
+   services.xserver.libinput.touchpad.tapping = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kayvan = {
