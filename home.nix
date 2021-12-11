@@ -75,6 +75,7 @@ let
     vim
     vlc                  # media player
     vscode               # visual studio
+    virt-manager
     watchman
     xclip                # clipboard support (also for vim)
     xmobar               # for xmonad
@@ -102,20 +103,21 @@ let
   ];
 
  haskellPkgs = with pkgs.haskellPackages; [
-    cabal2nix # convert cabal projects to nix
-    cabal-install # package manager
+    # cabal2nix # convert cabal projects to nix
+    # cabal-install # package manager
     # structured-haskell-mode
-    ghc
+    # ghc
+    # ghcup
     # ghcid # compiler
     # haskell-language-server # haskell IDE (ships with ghcide)
     # dhall-lsp-server
-    hoogle # documentation
+    # hoogle # documentation
     # hlint
     # hpack
     # implicit-hie # hie
     # hie-bios
     # niv
-    nix-tree # visualize nix dependencies
+    # nix-tree # visualize nix dependencies
     # ormolu
     # stylish-haskell
  ];
@@ -174,7 +176,15 @@ programs.emacs = {
     homeDirectory = "/home/kayvan";
     stateVersion  = "22.05";
 
-    packages = defaultPkgs ++ gitPkgs ++ gnomePkgs ++ haskellPkgs ++ polybarPkgs ++ scripts ++ xmonadPkgs;
+    packages =
+      defaultPkgs ++
+      gitPkgs ++
+      gnomePkgs ++
+      # haskellPkgs ++
+      polybarPkgs ++
+      scripts ++
+      xmonadPkgs
+    ;
 
     sessionVariables = {
       DISPLAY = ":0";

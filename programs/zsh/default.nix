@@ -4,7 +4,7 @@ let
   zshConfig = ''
     bindkey -v
     eval "$(direnv hook zsh)"
-    neofetch
+    # neofetch
     '';
 in
 {
