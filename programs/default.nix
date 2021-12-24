@@ -4,7 +4,7 @@
   ./git
   ./fish
   ./zsh
-  ./neovim
+  # ./neovim
   ./rofi
   ./tmux
   ./xmonad

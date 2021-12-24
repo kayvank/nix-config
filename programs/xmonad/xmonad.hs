@@ -27,9 +27,8 @@ import XMonad.Util.SpawnOnce
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "terminator"
-
--- myTerminal = "konsole"
+-- myTerminal = "gnome-terminal"
+myTerminal = "konsole"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool

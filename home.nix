@@ -16,7 +16,7 @@ let
     bottom # alternative to htop & ytop
     brave # Browser
     cachix # nix caching
-    cinnamon.nemo # filemanager
+    cinnamon.nemo # filemanaroe
     chromium # Browser
     cmake
     cowsay
@@ -25,27 +25,30 @@ let
     dmenu # application launcher
     docker-compose # docker manager
     dive # explore docker layers
+    dos2unix
     opendune
-    element-desktop # a feature-rich client for Matrix.org
     emacs
+    exa
     editorconfig-core-c
-    exa # a better `ls`
     fd # "find" for files
     feh
-    gimp # gnu image manipulation program
+    # firefox
+    gcc
+    google-cloud-sdk
     gmp
     glibc
     glib
+    gtk3
     gnomecast # chromecast local files
     hyperfine # command-line benchmarking tool
     html-tidy
     interception-tools
     insomnia # rest client with graphql support
+    iotop
     jitsi-meet-electron # open source video calls and chat
     k9s # k8s pods manager
     killall # kill processes by name
     konsole
-    libreoffice # office suite
     libnotify # notify-send command
     libtool # # required by emacs vterm
     libvterm # # required by emacs vterm
@@ -76,17 +79,13 @@ let
     playerctl # music player controller
     polybar # for xmonad
     prettyping # a nicer ping
-    postgresql_9_5
+    postgresql
     pulsemixer # pulseaudio mixer
     pipenv
     ranger # command line file browser
     ripgrep # fast grep
     rnix-lsp # nix lsp server
     ruby
-    # rustup
-    # rustc
-    # rustfmt
-    cargo
 
     sbt # scala sbt
     sbcl # lisp compiler
@@ -100,13 +99,17 @@ let
     stalonetray
     tdesktop # telegram messaging client
     terraform
+    gnome.gnome-terminal
     terminator # great terminal multiplexer
     tldr # summary of a man page
     tree # display files in a tree view
     tmux
+
     vlc # media player
     vim
+    vscode ## -extensions.haskell.haskell
     watchman
+    whatsapp-for-linux
     xclip # clipboard support (also for vim)
     xcape
     xfce.xfce4-pulseaudio-plugin
@@ -118,7 +121,7 @@ let
     yarn2nix
     zlib
     # fixes the `ar` error required by cabal
-    binutils-unwrapped
+    # binutils-unwrapped
   ];
 
   gnomePkgs = with pkgs.gnome3; [
@@ -128,17 +131,30 @@ let
     nautilus # file manager
   ];
 
-  pythonPkgs = with pkgs.python38Packages; [ argcomplete pylint pip ];
+  pythonPkgs = with pkgs.python38Packages; [
+    argcomplete
+    pylint
+    pip
+    isort
+    pytest
+    pyflakes
+  ];
   gitPkgs = with pkgs.gitAndTools; [
     diff-so-fancy # git diff with colors
     git-crypt # git files encryption
     hub # github command-line client
     tig # diff and commit view
+    # purescript
+    spago
   ];
   nodePkgs = with pkgs.nodePackages; [
     node2nix # node to nix
     prettier
     eslint
+    purty
+    yaml-language-server
+    stylelint
+    js-beautify
   ];
   haskellPkgs = with pkgs.haskellPackages; [
     apply-refact
@@ -160,6 +176,7 @@ let
     ormolu
     stylish-haskell
   ];
+  rustPkgs = with pkgs; [ rustup ];
 
   polybarPkgs = with pkgs; [
     font-awesome-ttf # awesome fonts
@@ -197,10 +214,10 @@ in {
   home = {
     username = "soostone";
     homeDirectory = "/home/soostone";
-    stateVersion = "21.03";
+    stateVersion = "21.11";
 
     packages = defaultPkgs ++ gitPkgs ++ gnomePkgs ++ nodePkgs ++ pythonPkgs
-      ++ haskellPkgs ++ polybarPkgs ++ scripts ++ xmonadPkgs;
+      ++ haskellPkgs ++ rustPkgs ++ polybarPkgs ++ scripts ++ xmonadPkgs;
 
     sessionVariables = {
       DISPLAY = ":0";
@@ -212,39 +229,34 @@ in {
   news.display = "silent";
 
   programs = {
+
     bat.enable = true;
 
     broot = {
       enable = true;
       enableFishIntegration = true;
       enableZshIntegration = true;
+      enableBashIntegration = true;
     };
 
-    direnv = {
-      enable = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-      enableNixDirenvIntegration = true;
-    };
 
     fzf = {
       enable = true;
       enableFishIntegration = true;
       enableZshIntegration = true;
+      enableBashIntegration = true;
     };
 
     # gpg.enable = true;
 
     htop = {
       enable = true;
-      sortDescending = true;
-      sortKey = "PERCENT_CPU";
     };
 
     zsh = { enable = true; };
 
     jq.enable = true;
-    ssh.enable = true;
+    # ssh.enable = true;
 
   };
 

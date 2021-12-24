@@ -40,7 +40,7 @@ in
         hp.dbus
         hp.monad-logger
       ];
-      config = ./config.hs;
+      config = ./xmonad.hs;
     };
   };
 }

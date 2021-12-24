@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
+    # neofetch
 let
   zshConfig = ''
     eval "$(direnv hook zsh)"
-    neofetch
   '';
 in {
   programs.zsh = {
