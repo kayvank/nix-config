@@ -13,12 +13,17 @@ let
     cachix               # nix caching
     cinnamon.nemo        # filemanager
     chromium             # Browser
+    clisp
+    coreutils
     dmenu                # application launcher
     docker-compose       # docker manager
     dive                 # explore docker layers
     # element-desktop      # a feature-rich client for Matrix.org
+    emacs
     exa                  # a better `ls`
     fd                   # "find" for files
+    gcc
+    gem
     ghc
     gnumake
     gnome.dconf
@@ -27,6 +32,7 @@ let
     gnomecast            # chromecast local files
     htop
     hyperfine            # command-line benchmarking tool
+    ispell
     insomnia             # rest client with graphql support
     jitsi-meet-electron  # open source video calls and chats
     k9s                  # k8s pods manager
@@ -43,6 +49,7 @@ let
     neofetch             # command-line system information
     ngrok-2              # secure tunneling to localhost
     nix-doc              # nix documentation search tool
+    nixfmt
     nix-index            # files database for nixpkgs
     nyancat              # the famous rainbow cat!
     oh-my-zsh            # zshell stuff
@@ -54,10 +61,14 @@ let
     polybar              # for xmonad
     postgresql
     prettyping           # a nicer ping
+    python
     pulsemixer           # pulseaudio mixer
+    racket
     ranger               # command line file browser
     ripgrep              # fast grep
     rnix-lsp             # nix lsp server
+    ruby
+    sbcl
     sbt
     signal-desktop       # signal messaging client
     simplescreenrecorder # self-explanatory
@@ -85,7 +96,6 @@ let
     zsh                  # zshell, bash ++
     zlib
     # fixes the `ar` error required by cabal
-    binutils-unwrapped
   ];
 
   gitPkgs = with pkgs.gitAndTools; [
@@ -103,22 +113,23 @@ let
   ];
 
  haskellPkgs = with pkgs.haskellPackages; [
-    # cabal2nix # convert cabal projects to nix
-    # cabal-install # package manager
+    cabal2nix # convert cabal projects to nix
+    cabal-install # package manager
     # structured-haskell-mode
-    # ghc
+    ghc
+    # ghcid
     # ghcup
     # ghcid # compiler
-    # haskell-language-server # haskell IDE (ships with ghcide)
-    # dhall-lsp-server
-    # hoogle # documentation
-    # hlint
-    # hpack
-    # implicit-hie # hie
+    # haskell-language-server
+    dhall-lsp-server
+    hoogle # documentation
+    hlint
+    hpack
+    implicit-hie # hie
     # hie-bios
     # niv
     # nix-tree # visualize nix dependencies
-    # ormolu
+    ormolu
     # stylish-haskell
  ];
  rustPkgs = with pkgs; [ rustup ];
@@ -143,13 +154,13 @@ let
 in
 {
 
-programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [
-      epkgs.nix-mode
-      epkgs.magit
-    ];
-  };
+# programs.emacs = {
+#     enable = true;
+#     extraPackages = epkgs: [
+#       epkgs.nix-mode
+#       epkgs.magit
+#     ];
+#   };
 
 
   programs.home-manager.enable = true;
@@ -180,7 +191,7 @@ programs.emacs = {
       defaultPkgs ++
       gitPkgs ++
       gnomePkgs ++
-      # haskellPkgs ++
+      haskellPkgs ++
       polybarPkgs ++
       scripts ++
       xmonadPkgs
