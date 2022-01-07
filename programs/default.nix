@@ -2,8 +2,8 @@
   ./dconf
   # ./doom
   ./git
-  ./fish
-  ./zsh
+  # ./fish
+#  ./zsh
   # ./neovim
   ./rofi
   ./tmux

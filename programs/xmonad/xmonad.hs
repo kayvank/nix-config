@@ -27,8 +27,8 @@ import XMonad.Util.SpawnOnce
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
--- myTerminal = "gnome-terminal"
-myTerminal = "konsole"
+myTerminal = "gnome-terminal"
+-- myTerminal = "konsole"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -59,7 +59,7 @@ myModMask = mod4Mask
 -- myWorkspaces = ["dev", "cli", "web", "irc"] ++ map show [5 .. 9]
 
 --
---myWorkspaces = ["1:emacs", "2:term", "3:web", "docs", "5", "6", "7", "8:chat", "9"]
+--myWorkspaces = ["1:emacs", "2:term", "3:web", "4:docs", "5:vc", "6", "7", "8:chat", "9"]
 myWorkspaces = ["1:napkin", "2:client-analytics", "3:web", "docs", "5", "6", "7", "8:chat", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
@@ -83,7 +83,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- launch dmenu
       ((modm, xK_p), spawn "dmenu_run"),
       -- launch gmrun
-      ((modm .|. shiftMask, xK_p), spawn "gmrun"),
+      -- ((modm, xK_r), spawn  "rofi -sidebar-mode -show run"),
+      ((modm .|. shiftMask, xK_p), spawn "rofi -sidebar-mode -show run"),
+      -- ((modm .|. shiftMask, xK_p), spawn "gmrun"),
       -- close focused window
       ((modm .|. shiftMask, xK_c), kill),
       -- Rotate through the available layout algorithms
@@ -274,8 +276,8 @@ myLogHook = return ()
 myBar = "xmobar"
 
 myStartupHook = do
-  -- spawnOnce "xscreensaver"
-  spawnOnce "feh --bg-fill /home/soostone/Pictures/haskell.png"
+  spawnOnce "xscreensaver"
+  spawnOnce "feh --bg-fill /home/kayvan/Pictures/haskell.png"
   spawnOnce myBar
   spawnOnce "blueman-applet"
   spawnOnce "nm-applet"

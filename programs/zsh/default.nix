@@ -13,8 +13,8 @@ in {
     enableAutosuggestions = true;
 
     sessionVariables = {
-      CPATH = "/home/soostone/.nix-profile/include";
-      LIBRARY_PATH = "/home/soostone/.nix-profile/lib";
+      CPATH = "~/.nix-profile/include";
+      LIBRARY_PATH = "~/.nix-profile/lib";
 
     };
     shellAliases = {
@@ -39,7 +39,7 @@ in {
       whaskell = "cd ~/dev/workspaces/workspace-haskell";
       wnixos = "cd ~/dev/workspaces/workspace-nixos";
       wproto = "cd ~/dev/workspaces/workspace-proto";
-      wsoostone = "cd ~/dev/workspaces/workspace-soostone";
+      wsoos = "cd ~/dev/workspaces/workspace-soostone";
     };
     plugins = [{
       name = "zsh-nix-shell";
