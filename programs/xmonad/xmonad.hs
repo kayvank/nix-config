@@ -81,11 +81,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((noModMask, xF86XK_MonBrightnessDown), spawn "/home/soostone/bin/brightness-down"),
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
       -- launch dmenu
-      ((modm, xK_p), spawn "dmenu_run"),
-      -- launch gmrun
-      -- ((modm, xK_r), spawn  "rofi -sidebar-mode -show run"),
-      ((modm .|. shiftMask, xK_p), spawn "rofi -sidebar-mode -show run"),
-      -- ((modm .|. shiftMask, xK_p), spawn "gmrun"),
+      ((modm, xK_p), spawn "rofi -sidebar-mode -show run"),
+      -- launch rofi
+      ((modm .|. shiftMask, xK_p), spawn "dmenu_run"),
+      -- launch lock-screen
+      ((modm, xK_z), spawn "xscreensaver-command -lock"),
       -- close focused window
       ((modm .|. shiftMask, xK_c), kill),
       -- Rotate through the available layout algorithms
