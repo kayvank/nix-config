@@ -59,7 +59,6 @@ myModMask = mod4Mask
 -- myWorkspaces = ["dev", "cli", "web", "irc"] ++ map show [5 .. 9]
 
 --
---myWorkspaces = ["1:emacs", "2:term", "3:web", "4:docs", "5:vc", "6", "7", "8:chat", "9"]
 myWorkspaces = ["1:emacs", "2:term", "3:web", "4:docs", "5", "6", "7", "8:chat", "9:vc"]
 
 -- Border colors for unfocused and focused windows, respectively.
@@ -279,7 +278,7 @@ myStartupHook = do
   spawnOnce "xscreensaver"
   spawnOnce "feh --bg-fill /home/kayvan/Pictures/haskell.png"
   spawnOnce myBar
-  spawnOnce "/usr/bi/blueman-applet"
+  spawnOnce "/usr/bin/blueman-applet"
   spawnOnce "nm-applet"
   spawnOnce "pa-applet"
   spawnOnce "flameshot"
