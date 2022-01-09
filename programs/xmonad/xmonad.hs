@@ -60,7 +60,7 @@ myModMask = mod4Mask
 
 --
 --myWorkspaces = ["1:emacs", "2:term", "3:web", "4:docs", "5:vc", "6", "7", "8:chat", "9"]
-myWorkspaces = ["1:napkin", "2:client-analytics", "3:web", "docs", "5", "6", "7", "8:chat", "9"]
+myWorkspaces = ["1:emacs", "2:term", "3:web", "4:docs", "5", "6", "7", "8:chat", "9:vc"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -279,7 +279,7 @@ myStartupHook = do
   spawnOnce "xscreensaver"
   spawnOnce "feh --bg-fill /home/kayvan/Pictures/haskell.png"
   spawnOnce myBar
-  spawnOnce "blueman-applet"
+  spawnOnce "/usr/bi/blueman-applet"
   spawnOnce "nm-applet"
   spawnOnce "pa-applet"
   spawnOnce "flameshot"
@@ -319,7 +319,7 @@ defaults =
       keys = myKeys,
       mouseBindings = myMouseBindings,
       -- hooks, layouts
-      layoutHook = myLayout,
+      layoutHook = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ myLayout,
       manageHook = myManageHook,
       handleEventHook = myEventHook,
       logHook = myLogHook,
