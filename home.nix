@@ -14,6 +14,7 @@ let
     cinnamon.nemo        # filemanager
     chromium             # Browser
     clisp
+    conky
     coreutils
     dmenu                # application launcher
     docker-compose       # docker manager

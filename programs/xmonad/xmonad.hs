@@ -280,8 +280,10 @@ myStartupHook = do
   spawnOnce myBar
   spawnOnce "/usr/bin/blueman-applet"
   spawnOnce "nm-applet"
+  -- spawnOnce "volumeicon"
   spawnOnce "pa-applet"
   spawnOnce "flameshot"
+  -- spawn "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --alpha 0  --height 18"
   spawnOnce "stalonetray"
 
 ------------------------------------------------------------------------
