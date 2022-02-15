@@ -6,29 +6,31 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
-import qualified Data.Default as DD
-import qualified Data.Map as M
-import Data.Monoid
-import Graphics.X11.ExtraTypes.XF86
-import System.Exit
-import XMonad
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Layout.Fullscreen
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Spacing
-import XMonad.Layout.Spiral
-import XMonad.Layout.Tabbed
-import XMonad.Layout.ThreeColumns
-import qualified XMonad.StackSet as W
-import XMonad.Util.EZConfig (additionalKeys, additionalKeysP)
-import XMonad.Util.SpawnOnce
+import qualified Data.Default                 as DD
+import qualified Data.Map                     as M
+import           Data.Monoid
+import           Graphics.X11.ExtraTypes.XF86
+import           System.Exit
+import           XMonad
+import           XMonad.Actions.SpawnOn       (manageSpawn, spawnOn)
+import           XMonad.Actions.WithAll       (killAll)
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Layout.Fullscreen
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.Spacing
+import           XMonad.Layout.Spiral
+import           XMonad.Layout.Tabbed
+import           XMonad.Layout.ThreeColumns
+import qualified XMonad.StackSet              as W
+import           XMonad.Util.EZConfig         (additionalKeys, additionalKeysP)
+import           XMonad.Util.SpawnOnce
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "gnome-terminal"
--- myTerminal = "konsole"
+myTerminal = "termonad"
+-- myTerminal = "gnome-terminal"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -59,7 +61,16 @@ myModMask = mod4Mask
 -- myWorkspaces = ["dev", "cli", "web", "irc"] ++ map show [5 .. 9]
 
 --
-myWorkspaces = ["1:emacs", "2:term", "3:web", "4:docs", "5", "6", "7", "8:chat", "9:vc"]
+devWs = "dev"
+sysWs = "sys"
+webWs = "web"
+docWs = "doc"
+_5Ws  = ":5:"
+_6Ws  = ":6:"
+_7Ws  = ":7:"
+comWs = "com"
+etcWs = "etc"
+myWorkspaces = [devWs, sysWs, webWs, docWs, _5Ws, _6Ws, _7Ws, comWs, etcWs]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -85,8 +96,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_p), spawn "dmenu_run"),
       -- launch lock-screen
       ((modm, xK_z), spawn "xscreensaver-command -lock"),
+      -- launch slack
+      ((modm, xK_F2), spawnOn comWs "slack"),
       -- close focused window
-      ((modm .|. shiftMask, xK_c), kill),
+      ((modm .|. shiftMask, xK_BackSpace), killAll),
+      ((modm , xK_BackSpace), kill),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default

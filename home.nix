@@ -126,10 +126,12 @@ let
     hpack
     implicit-hie # hie
     hie-bios
-    # niv
-    # nix-tree # visualize nix dependencies
+    niv
+    nix-tree # visualize nix dependencies
     ormolu
+    # stack
     stylish-haskell
+    termonad
  ];
  rustPkgs = with pkgs; [ rustup ];
 
