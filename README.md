@@ -1,3 +1,5 @@
+Deprecated in favor of my [dotfiles](https://github.com/kayvank/dotfiles) repo
+
 nix-config
 ====
 
