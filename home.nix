@@ -13,7 +13,7 @@ let
     cachix               # nix caching
     cinnamon.nemo        # filemanager
     chromium             # Browser
-    clisp
+    # clisp
     conky
     coreutils
     dmenu                # application launcher
@@ -23,12 +23,6 @@ let
     exa                  # a better `ls`
     feh                  # image viewer and cataloguer
     fd                   # "find" for files
-    gcc
-    gem
-    # ghc
-    gmrun
-    gnumake
-    gnome.dconf
     gimp                 # gnu image manipulation program
     git
     gnomecast            # chromecast local files
@@ -47,23 +41,17 @@ let
     metals               # scala build for emacs
     ncdu                 # disk space info (a better du)
     neofetch             # command-line system information
-    ngrok-2              # secure tunneling to localhost
-    nix-doc              # nix documentation search tool
     nixfmt
-    nix-index            # files database for nixpkgs
     nyancat              # the famous rainbow cat!
-#    oh-my-zsh            # zshell stuff
     pa_applet            # pulse audio applet
     pavucontrol          # pulseaudio volume control
     paprefs              # pulseaudio preferences
     pasystray            # pulseaudio systray
     playerctl            # music player controller
-    polybar              # for xmonad
     postgresql
     prettyping           # a nicer ping
     python
     pulsemixer           # pulseaudio mixer
-    racket
     ranger               # command line file browser
     ripgrep              # fast grep
     rnix-lsp             # nix lsp server
@@ -71,17 +59,10 @@ let
     ruby
     sbcl
     sbt
-    signal-desktop       # signal messaging client
-    simplescreenrecorder # self-explanatory
     # slack                # messaging client
     sqlite
     sqlitebrowser
-    spotify              # music source
     stalonetray
-    trayer
-    tdesktop             # telegram messaging client
-    terminator           # great terminal multiplexer
-    tldr                 # summary of a man page
     tree                 # display files in a tree view
     tmux
     unzip
@@ -104,13 +85,6 @@ let
     tig           # diff and commit view
   ];
 
-  gnomePkgs = with pkgs.gnome3; [
-    eog            # image viewer
-    evince         # pdf reader
-    gnome-calendar # calendar
-    nautilus       # file manager
-  ];
-
  haskellPkgs = with pkgs.haskellPackages; [
     cabal2nix # convert cabal projects to nix
     cabal-install # package manager
@@ -129,18 +103,11 @@ let
     niv
     nix-tree # visualize nix dependencies
     ormolu
-    # stack
+    stack
     stylish-haskell
     termonad
  ];
- rustPkgs = with pkgs; [ rustup ];
 
-  polybarPkgs = with pkgs; [
-    font-awesome-ttf      # awesome fonts
-    material-design-icons # fonts with glyphs
-  ];
-
-  scripts = pkgs.callPackage ./scripts/default.nix { inherit config pkgs; };
 
   xmonadPkgs = with pkgs; [
     networkmanager_dmenu   # networkmanager on dmenu
@@ -155,31 +122,23 @@ let
 in
 {
 
-# programs.emacs = {
-#     enable = true;
-#     extraPackages = epkgs: [
-#       epkgs.nix-mode
-#       epkgs.magit
-#     ];
-#   };
-
-
   programs.home-manager.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
+    extraOptions = "experimental-features = nix-command flakes"; ## not working
     packageOverrides = p: {
       nur = import (import pinned/nur.nix) { inherit pkgs; };
     };
   };
 
-  nixpkgs.overlays = [
-    (import ./overlays/beauty-line)
+  # nixpkgs.overlays = [
+  #   (import ./overlays/beauty-line)
 
-  ];
+  # ];
 
-  imports = (import ./programs) ++ (import ./services) ++ [(import ./themes)];
+  imports = (import ./programs) ++ (import ./services); ## ++ [(import ./themes)];
 
   xdg.enable = true;
 
@@ -191,10 +150,9 @@ in
     packages =
       defaultPkgs ++
       gitPkgs ++
-      gnomePkgs ++
+      # gnomePkgs ++
       haskellPkgs ++
-      polybarPkgs ++
-      scripts ++
+      # scripts ++
       xmonadPkgs
     ;
 
@@ -212,12 +170,12 @@ in
 
     broot = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
 
     direnv = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
       nix-direnv.enable = true;
     };
 

@@ -290,7 +290,7 @@ myBar = "xmobar"
 
 myStartupHook = do
   spawnOnce "xscreensaver"
-  spawnOnce "feh --bg-fill /home/kayvan/Pictures/haskell.png"
+  spawnOnce "feh --bg-fill /home/kayvan/.config/nixpkgs/wallpapers/ussInterprise.jpg"
   spawnOnce myBar
   spawnOnce "/usr/bin/blueman-applet"
   spawnOnce "nm-applet"
