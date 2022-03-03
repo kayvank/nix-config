@@ -93,7 +93,7 @@ let
     ghcid
     # ghcup
     ghcid # compiler
-    haskell-language-server
+    # haskell-language-server
     dhall-lsp-server
     hoogle # documentation
     hlint
